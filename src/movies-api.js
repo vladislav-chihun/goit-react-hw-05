@@ -5,7 +5,6 @@ export default function moviesApi(params) {
 
 const options = {
   headers: {
-	// Замість api_read_access_token вставте свій токен
     Authorization: '5499238a19a5e78ff87a4990e8837714'
   }
 };
