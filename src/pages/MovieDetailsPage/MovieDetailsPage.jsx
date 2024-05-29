@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { MovieDetails } from "../../movies-api"; 
+import { MoviesId } from "../../movies-api";
 
 export default function MovieDetailsPage() {
     const [movie, setMovie] = useState(null);
-    const { movieId } = useParams();
+    const { movieId } = useParams(); 
 
     useEffect(() => {
         if (!movieId) return;
 
         const fetchMovieDetails = async () => {
             try {
-                const movieDetails = await MovieDetails(movieId);
+                const movieDetails = await MoviesId(movieId);
                 setMovie(movieDetails);
             } catch (error) {
                 console.error('Error fetching movie details:', error);

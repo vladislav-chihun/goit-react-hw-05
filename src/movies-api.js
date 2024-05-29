@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const API_KEY = '5499238a19a5e78ff87a4990e8837714';
 
@@ -15,7 +15,7 @@ export async function MoviesInfo(params) {
             ...params
         },
         headers: {
-            Authorization: 'Bearer 5499238a19a5e78ff87a4990e8837714'
+            Authorization: `Bearer ${API_KEY}`
         }
     };
     
@@ -26,19 +26,18 @@ export async function MoviesInfo(params) {
         console.error('Error fetching movies:', err);
         throw err;
     }
+}
 
-} 
-
-export async function MovieDetails(movieId) {
-    const url = `https://api.themoviedb.org/3/movie/${movieId}?`;
+export async function MoviesId(movieId) {
+    const url = `https://api.themoviedb.org/3/movie/${movieId}`;
 
     const options = {
         params: {
             api_key: API_KEY,
-            language: 'en-US'
+            language: 'en-US',
         },
         headers: {
-            Authorization: 'Bearer 5499238a19a5e78ff87a4990e8837714'
+            Authorization: `Bearer ${API_KEY}`
         }
     };
     
