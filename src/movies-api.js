@@ -23,7 +23,7 @@ export async function MoviesInfo(params) {
         const response = await axios.get(url, options);
         return response.data;
     } catch (err) {
-        console.error('Error fetching movies:', err);
+        console.log('Error fetching movies:', err);
         throw err;
     }
 }
@@ -45,7 +45,50 @@ export async function MoviesId(movieId) {
         const response = await axios.get(url, options);
         return response.data;
     } catch (err) {
-        console.error('Error fetching movie details:', err);
+        console.log('Error fetching movie details:', err);
+        throw err;
+    }
+}
+export async function MovieCastApi(movieId) {
+    const url = `https://api.themoviedb.org/3/movie/${movieId}/credits`;
+
+    const options = {
+        params: {
+            api_key: API_KEY,
+            language: 'en-US',
+        },
+        headers: {
+            Authorization: `Bearer ${API_KEY}`
+        }
+    };
+    
+    try {
+        const response = await axios.get(url, options);
+        console.log(response.data)
+        return response.data;
+    } catch (err) {
+        console.log('Error fetching movie details:', err);
+        throw err;
+    }
+}
+export async function MovieReviewsApi(movieId) {
+    const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews`;
+
+    const options = {
+        params: {
+            api_key: API_KEY,
+            language: 'en-US',
+        },
+        headers: {
+            Authorization: `Bearer ${API_KEY}`
+        }
+    };
+
+    try {
+        const response = await axios.get(url, options);
+        return response.data;
+    } catch (err) {
+        console.error('Error fetching movie reviews:', err);
         throw err;
     }
 }

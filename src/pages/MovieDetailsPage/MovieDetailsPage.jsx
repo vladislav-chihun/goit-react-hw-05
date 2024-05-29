@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 import { MoviesId } from "../../movies-api";
 
 export default function MovieDetailsPage() {
     const [movie, setMovie] = useState(null);
-    const { movieId } = useParams(); 
+    const { movieId } = useParams();
 
     useEffect(() => {
         if (!movieId) return;
@@ -40,6 +40,11 @@ export default function MovieDetailsPage() {
                             <p>{movie.vote_average}</p>
                         </li>
                     </ul>
+                    <ul>
+                        <li><NavLink to="cast">Cast</NavLink></li>
+                        <li><NavLink to="reviews">Reviews</NavLink></li>
+                    </ul>
+                    <Outlet />
                 </>
             )}
         </div>
