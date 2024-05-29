@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { MoviesInfo } from "../../movies-api";
 import { Link } from "react-router-dom";
-import MovieList from "../../components/MovieList/MovieList";
 
-export default function HomePage() {
+export default function MovieList(query) {
+    
     const [movies, setMovies] = useState([]);
-
     useEffect(() => {
         MoviesInfo().then((data) => {
             console.log(data.results);
@@ -14,6 +13,14 @@ export default function HomePage() {
     }, []);
 
     return (
-        <MovieList/>
-    );
+        <div>
+            <ul>
+                {movies.map((movie) => (
+                    <li key={movie.id}>
+                        <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    )
 }

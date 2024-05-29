@@ -1,7 +1,16 @@
+import { useState } from "react"
+
 export default function MoviesPage() {
+    const [movieFind, setMovieFind] = useState("")
+    const [isLoading,setIsLodaing] = useState(false)
     return (
-        <ul>
-            <li></li>
-        </ul>
+        <div>
+
+            {isLoading && <p>Loading...</p>}
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        
     )
 }
