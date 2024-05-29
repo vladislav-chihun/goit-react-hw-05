@@ -13,6 +13,7 @@ export default function MovieReviews() {
             try {
                 const reviewsData = await MovieReviewsApi(movieId);
                 setReviews(reviewsData.results);
+                console.log(reviews)
             } catch (error) {
                 console.error('Error fetching movie reviews:', error);
             }
@@ -25,7 +26,7 @@ export default function MovieReviews() {
         <ul>
             {reviews.map(review => (
                 <li key={review.id}>
-                    <h3>{review.author}</h3>
+                    <h3>Author: {review.author_details.username}</h3>
                     <p>{review.content}</p>
                 </li>
             ))}
