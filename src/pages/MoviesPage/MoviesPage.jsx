@@ -10,7 +10,6 @@ export default function MoviesPage() {
     },[])
     return (
         <div>
-            <NavLink ><input type="text" value={movieFind} onChange={e => setMovieFind(e.target.value)} /></NavLink>
             {isLoading && <p>Loading...</p>}
             <MovieList query={5} />
         </div>
