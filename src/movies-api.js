@@ -2,17 +2,16 @@ import axios from 'axios';
 
 const API_KEY = '5499238a19a5e78ff87a4990e8837714';
 
-export async function MoviesInfo(params) {
-    const url = 'https://api.themoviedb.org/3/search/movie?';
+export async function MoviesInfo(query) {
+    const url = 'https://api.themoviedb.org/3/trending/movie/day?language=en-US';
 
     const options = {
         params: {
-            query: 'Inception',
+            query: query,
             api_key: API_KEY,
             include_adult: false,
             language: 'en-US',
             page: 1,
-            ...params
         },
         headers: {
             Authorization: `Bearer ${API_KEY}`
