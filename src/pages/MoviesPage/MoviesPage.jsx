@@ -10,17 +10,18 @@ export default function MoviesPage() {
     const [searchParams, setSearchParams] = useSearchParams();
     const movieFilter = searchParams.get("movie") ?? "";
 
-    const handleSearch = newMovie => {
-      searchParams.set("movie", newMovie)
-  }
+    const handleSearch = e => {
+        e.preventDefault();
+        const searchForm = e.currentTarget;
+        setSearchParams({ movieName: searchForm.elements.movieName.value });
+        searchForm.reset();
+    };
 
   
 
   return (
     <section>
-      <SearchField onSearch={handleSearch} />
-      {loading && <p>Loading...</p>}
-      {isError && <p>Error fetching movies</p>}
+      <SearchField onSubmit={handleSearch} />
       {searchedMovies.length > 0 && <MovieList data={searchedMovies} />}
     </section>
   );
