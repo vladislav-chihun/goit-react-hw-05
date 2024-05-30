@@ -1,33 +1,31 @@
-import { Field, Formik } from "formik";
-import { Form } from "react-router-dom";
+import { useState } from "react";
 
+export default function SearchField({ onSearch }) {
+  const [query, setQuery] = useState("");
 
-export default function SearchField() {
+  const handleInputChange = (event) => {
+    
+    setQuery(event.target.value);
+  };
 
-
-    function handleSearch(values,actions) {
-        if (values.query.trim() === "") return
-        onSearch(values.query);
+  const handleSearch = (values, actions, event) => {
+    event.preventDefault()
+    if (values.query.trim() === "") return 
+    onSearch(values.query);
     actions.resetForm();
-    }
+  };
 
-
-
-    return (
-    <Formik initialValues={{ query: "" }} onSubmit={handleSearch}>
-      <Form >
-        <Field
-          
-          type="text"
-          name="query"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search movie"
-        />
-        <button type="submit">
-          Search
-        </button>
-      </Form>
-    </Formik>
+  return (
+    <form onSubmit={handleSearch}>
+      <input
+        type="text"
+        value={query}
+        onChange={handleInputChange}
+        autoComplete="off"
+        autoFocus
+        placeholder="Search movie"
+      />
+      <button type="submit">Search</button>
+    </form>
   );
 }
