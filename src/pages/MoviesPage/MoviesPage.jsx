@@ -7,37 +7,12 @@ import { searchMovie } from "../../movies-api";
 
 export default function MoviesPage() {
   const [searchedMovies, setSearchedMovies] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const movieFilter = searchParams.get("movie") ?? "";
 
-    const handleSearch = (query) => {
-    setSearchQuery(query);
-    setSearchParams({ query });
-    };
-    
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        setLoading(true);
-        setIsError(false);
-        const query = searchQuery || searchParams.get("query");
-        if (query) {
-          const searchedMovies = await searchMovie(query);
-          setSearchedMovies(searchedMovies.results);
-        }
-      } catch (error) {
-        console.log(error);
-        setIsError(true);
-      } finally {
-          setLoading(false);
-          console.log(searchMovie)
-      }
-    };
-
-    fetchMovies();
-  }, [searchQuery, searchParams]);
+    const handleSearch = newMovie => {
+      searchParams.set("movie", newMovie)
+  }
 
   
 
