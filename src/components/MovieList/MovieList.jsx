@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { searchMovie, trendMovies } from "../../movies-api";
 import { Link } from "react-router-dom";
+import css from "./MovieList.module.css"
 
 export default function MovieList({query}) {
   const [movies, setMovies] = useState([]);
@@ -22,10 +23,10 @@ export default function MovieList({query}) {
 
   return (
     <div>
-      <ul>
+      <ul className={css.filmList}>
         {movies.map((movie) => (
           <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`} >{movie.title}</Link>
+            <Link to={`/movies/${movie.id}`} className={css.listLink}>{movie.title}</Link>
           </li>
         ))}
       </ul>

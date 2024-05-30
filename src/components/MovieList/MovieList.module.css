@@ -1,0 +1,19 @@
+.filmList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #222831;
+  list-style-type: none;
+  border-radius: 20px;
+  padding: 20px;
+  width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+body {
+  background-color: #233142;
+}
+.listLink {
+  color: #e3e3e3;
+  text-decoration: none;
+}

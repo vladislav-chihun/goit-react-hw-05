@@ -1,0 +1,46 @@
+.detailsContainer {
+  display: flex;
+}
+body {
+  background-color: #233142;
+}
+.descriptionContainer {
+  display: flex;
+  flex-direction: column;
+  width: 930px;
+  background-color: #222831;
+  margin-left: 20px;
+  border-radius: 20px;
+  list-style-type: none;
+}
+.detailsPoster {
+  background-color: #222831;
+  border-radius: 20px;
+  border: #222831 5px solid;
+}
+.movieTitle {
+  color: #e3e3e3;
+}
+.text {
+  color: #e3e3e3;
+}
+.miscDescription {
+  display: flex;
+  list-style-type: none;
+  gap: 20px;
+}
+.castLink {
+  text-decoration: none;
+  color: #e3e3e3;
+}
+.reviewsLink {
+  text-decoration: none;
+  color: #e3e3e3;
+}
+.goBackBtn {
+  color: #e3e3e3;
+  background-color: #222831;
+  padding: 7px;
+  border-radius: 5px;
+  text-decoration: none;
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { movieReviews } from "../../movies-api";
+import css from "./MovieReviews.module.css"
 
 export default function MovieReviews() {
     const [reviews, setReviews] = useState([]);
@@ -13,17 +14,16 @@ export default function MovieReviews() {
             try {
                 const reviewsData = await movieReviews(movieId);
                 setReviews(reviewsData.results);
-                console.log(reviews)
             } catch (error) {
                 console.error('Error fetching movie reviews:', error);
             }
         };
 
         fetchMovieReviews();
-    }, [movieId]);
+    }, [movieId,reviews]);
 
     return (
-        <ul>
+        <ul className={css.reviewsContainer}>
             {reviews.map(review => (
                 <li key={review.id}>
                     <h3>Author: {review.author_details.username}</h3>

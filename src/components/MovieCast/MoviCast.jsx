@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { movieCast } from "../../movies-api";
+import css from "./MovieCast.module.css"
 
 export default function MovieCast() {
     const [cast, setCast] = useState([]);
@@ -22,12 +23,12 @@ export default function MovieCast() {
     }, [movieId]);
 
     return (
-        <ul>
+        <ul className={css.castContainer}>
             {cast.map(member => (
                 <li key={member.cast_id}>
                     <img src={`https://image.tmdb.org/t/p/w200${member.profile_path}`} alt={member.name} />
-                    <p>{member.name}</p>
-                    <p>{member.character}</p>
+                    <p className={css.text}>{member.name}</p>
+                    <p className={css.text}>{member.character}</p>
                 </li>
             ))}
         </ul>

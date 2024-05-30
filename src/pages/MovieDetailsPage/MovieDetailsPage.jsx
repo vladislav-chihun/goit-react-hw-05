@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { movieDetails } from "../../movies-api";
+import css from "./MovieDetailsPage.module.css"
 
 export default function MovieDetailsPage() {
     const [movie, setMovie] = useState(null);
     const { movieId } = useParams();
     const location = useLocation()
      const backLinkRef = useRef(location.state ?? '/')
-    console.log(backLinkRef)
 
     useEffect(() => {
         if (!movieId) return;
@@ -25,28 +25,30 @@ export default function MovieDetailsPage() {
     }, [movieId]);
 
     return (
-        <div>
+        <div >
             {movie && (
-                <><p><Link to={backLinkRef.current} >Go Back</Link></p>
+                <><p><Link to={backLinkRef.current} className={css.goBackBtn}>Go Back</Link></p>
                     
-                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-                    <ul>
+                    <div className={css.detailsContainer}>
+                        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className={css.detailsPoster} />
+                        <ul className={css.descriptionContainer}>
                         <li>
-                            <h2>{movie.title}</h2>
-                            <p>{movie.overview}</p>
+                            <h2 className={css.movieTitle}>{movie.title}</h2>
+                            <p className={css.text}>{movie.overview}</p>
                         </li>
                         <li>
-                            <h3>Release Date:</h3>
-                            <p>{movie.release_date}</p>
+                            <h3 className={css.text}>Release Date:</h3>
+                            <p className={css.text}>{movie.release_date}</p>
                         </li>
                         <li>
-                            <h3>Rating:</h3>
-                            <p>{movie.vote_average}</p>
+                            <h3 className={css.text}>Rating:</h3>
+                            <p className={css.text}>{movie.vote_average}</p>
                         </li>
-                    </ul>
-                    <ul>
-                        <li><NavLink to="cast" state={{ ...location.state }}>Cast</NavLink></li>
-                        <li><NavLink to="reviews" state={{ ...location.state }}>Reviews</NavLink></li>
+                        </ul>
+                    </div>
+                    <ul className={css.miscDescription}>
+                        <li><NavLink to="cast" state={{ ...location.state }} className={css.castLink}>Cast</NavLink></li>
+                        <li><NavLink to="reviews" state={{ ...location.state }} className={css.reviewsLink}>Reviews</NavLink></li>
                     </ul>
                     <Outlet />
                 </>

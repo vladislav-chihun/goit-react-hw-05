@@ -1,0 +1,30 @@
+.navContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style-type: none;
+  background-color: #222831;
+  height: 50px;
+  margin: 0;
+  border-radius: 5px;
+}
+
+.navHome {
+  text-decoration: none;
+  font-size: larger;
+  color: black;
+}
+.navMovies {
+  text-decoration: none;
+  font-size: larger;
+  color: black;
+}
+.navHome:hover {
+  color: #e3e3e3;
+}
+.navMovies:hover {
+  color: #e3e3e3;
+}
+.active {
+  color: #e3e3e3;
+}
