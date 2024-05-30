@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { MovieCastApi } from "../../movies-api";
+import { movieCast } from "../../movies-api";
 
 export default function MovieCast() {
     const [cast, setCast] = useState([]);
@@ -11,7 +11,7 @@ export default function MovieCast() {
 
         const fetchMovieCast = async () => {
             try {
-                const castData = await MovieCastApi(movieId);
+                const castData = await movieCast(movieId);
                 setCast(castData.cast);
             } catch (error) {
                 console.error('Error fetching movie cast:', error);

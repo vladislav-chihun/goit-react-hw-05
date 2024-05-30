@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { MovieReviewsApi } from "../../movies-api";
+import { movieReviews } from "../../movies-api";
 
 export default function MovieReviews() {
     const [reviews, setReviews] = useState([]);
@@ -11,7 +11,7 @@ export default function MovieReviews() {
 
         const fetchMovieReviews = async () => {
             try {
-                const reviewsData = await MovieReviewsApi(movieId);
+                const reviewsData = await movieReviews(movieId);
                 setReviews(reviewsData.results);
                 console.log(reviews)
             } catch (error) {

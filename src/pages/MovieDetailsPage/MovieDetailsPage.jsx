@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink, Outlet, useParams } from "react-router-dom";
-import { MoviesId } from "../../movies-api";
+import { movieDetails } from "../../movies-api";
 
 export default function MovieDetailsPage() {
     const [movie, setMovie] = useState(null);
@@ -11,8 +11,8 @@ export default function MovieDetailsPage() {
 
         const fetchMovieDetails = async () => {
             try {
-                const movieDetails = await MoviesId(movieId);
-                setMovie(movieDetails);
+                const Details = await movieDetails(movieId);
+                setMovie(Details);
             } catch (error) {
                 console.error('Error fetching movie details:', error);
             }

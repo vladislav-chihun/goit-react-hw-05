@@ -8,6 +8,7 @@ export default function MoviesPage() {
 
    const handleSearch = async (topic) => {
     setMovieFind(topic);
+
   };
 
   

@@ -1,93 +1,31 @@
 import axios from 'axios';
 
 const API_KEY = '5499238a19a5e78ff87a4990e8837714';
+axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
-export async function MoviesInfo(query) {
-    const url = 'https://api.themoviedb.org/3/trending/movie/day?language=en-US';
-
-    const options = {
-        params: {
-            query: query,
-            api_key: API_KEY,
-            include_adult: false,
-            language: 'en-US',
-            page: 1,
-        },
-        headers: {
-            Authorization: `Bearer ${API_KEY}`
-        }
-    };
-    
-    try {
-        const response = await axios.get(url, options);
-        return response.data;
-    } catch (err) {
-        console.log('Error fetching movies:', err);
-        throw err;
-    }
+export const trendMovies = async () => {
+    const response = await axios.get(`trending/movie/day?api_key=${API_KEY}`);
+    return response.data;
 }
 
-export async function MoviesId(movieId) {
-    const url = `https://api.themoviedb.org/3/movie/${movieId}`;
-
-    const options = {
-        params: {
-            api_key: API_KEY,
-            language: 'en-US',
-        },
-        headers: {
-            Authorization: `Bearer ${API_KEY}`
-        }
-    };
-    
-    try {
-        const response = await axios.get(url, options);
-        return response.data;
-    } catch (err) {
-        console.log('Error fetching movie details:', err);
-        throw err;
-    }
+export const searchMovie = async (query) => {
+    const response = await axios.get(`search/movie?api_key=${API_KEY}&query=${query}&include_adult=false&language=en-US`);
+    return response.data;
 }
-export async function MovieCastApi(movieId) {
-    const url = `https://api.themoviedb.org/3/movie/${movieId}/credits`;
-
-    const options = {
-        params: {
-            api_key: API_KEY,
-            language: 'en-US',
-        },
-        headers: {
-            Authorization: `Bearer ${API_KEY}`
-        }
-    };
-    
-    try {
-        const response = await axios.get(url, options);
-        console.log(response.data)
-        return response.data;
-    } catch (err) {
-        console.log('Error fetching movie details:', err);
-        throw err;
-    }
+export const movieDetails = async (movieId) => {
+  const response = await axios.get(`movie/${movieId}?api_key=${API_KEY}&language=en-US`);
+  
+  return response.data;
 }
-export async function MovieReviewsApi(movieId) {
-    const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews`;
 
-    const options = {
-        params: {
-            api_key: API_KEY,
-            language: 'en-US',
-        },
-        headers: {
-            Authorization: `Bearer ${API_KEY}`
-        }
-    };
+export const movieReviews = async (movieId) => {
+  const response = await axios.get(`movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`);
 
-    try {
-        const response = await axios.get(url, options);
-        return response.data;
-    } catch (err) {
-        console.error('Error fetching movie reviews:', err);
-        throw err;
-    }
+  return response.data;
+}
+
+export const movieCast = async (movieId) => {
+  const response = await axios.get(`movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`);
+
+  return response.data;
 }

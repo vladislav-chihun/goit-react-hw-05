@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
-import { MoviesInfo } from "../../movies-api";
+import { searchMovie, trendMovies } from "../../movies-api";
 import { Link } from "react-router-dom";
 
-export default function MovieList(query) {
-    
+export default function MovieList({ query }) { 
     const [movies, setMovies] = useState([]);
+
     useEffect(() => {
-        MoviesInfo().then((data) => {
-            console.log(data.results);
-            setMovies(data.results);
-        });
-    }, []);
+        if (!query) {
+            trendMovies().then((data) => {
+                setMovies(data.results);
+            });
+        } else {
+            searchMovie(query).then((data) => { 
+                setMovies(data.results);
+            });
+        }
+    }, [query]); 
 
     return (
         <div>
@@ -22,5 +27,5 @@ export default function MovieList(query) {
                 ))}
             </ul>
         </div>
-    )
+    );
 }
