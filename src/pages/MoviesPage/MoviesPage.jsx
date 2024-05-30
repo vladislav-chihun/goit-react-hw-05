@@ -6,10 +6,11 @@ export default function MoviesPage() {
   const [movieFind, setMovieFind] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-   const handleSearch = async (topic) => {
-    setMovieFind(topic);
-
-  };
+   function handleSearch (event) {
+    event.preventDefault(); 
+    if (query.trim() === "") return;
+    onSearch(query);
+  }
 
   
 

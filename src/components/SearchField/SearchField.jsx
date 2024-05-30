@@ -13,14 +13,9 @@ export default function SearchField({ onSearch }) {
   const movieFilter = searchParams.get("movie") ?? ""
 console.log(movieFilter)
 
-  const handleSearch = (event) => {
-    event.preventDefault(); 
-    if (query.trim() === "") return;
-    onSearch(query);
-  };
 
   return (
-    <form onSubmit={handleSearch}>
+    <form onSubmit={onSearch}>
       <input
         type="text"
         value={query}
