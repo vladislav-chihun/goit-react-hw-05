@@ -45,8 +45,8 @@ export default function MovieDetailsPage() {
                         </li>
                     </ul>
                     <ul>
-                        <li><NavLink to="cast">Cast</NavLink></li>
-                        <li><NavLink to="reviews">Reviews</NavLink></li>
+                        <li><NavLink to="cast" state={{ ...location.state }}>Cast</NavLink></li>
+                        <li><NavLink to="reviews" state={{ ...location.state }}>Reviews</NavLink></li>
                     </ul>
                     <Outlet />
                 </>

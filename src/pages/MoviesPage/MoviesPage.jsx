@@ -1,15 +1,14 @@
-import { useSearchParams, } from "react-router-dom";
+import { useLocation, useSearchParams, } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { searchMovie } from "../../movies-api";
 import SearchField from "../../components/SearchField/SearchField";
 import MovieList from "../../components/MovieList/MovieList";
 
 
-
 export default function MoviesPage() {
 
   const [searchParams, setSearchParams] = useSearchParams();
- 
+  const location = useLocation();
 
   const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -55,7 +54,7 @@ export default function MoviesPage() {
       <div >
         <SearchField onSubmit={onSubmit} />
         {error && <p>There are no movies with this request. Please, try again.</p>}
-        { movieName && <MovieList query={movieName} />}
+        { movieName && <MovieList query={movieName} location={location}/>}
       </div>
     </main>
   );
