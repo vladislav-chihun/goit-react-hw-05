@@ -1,5 +1,6 @@
 
-  export default function SearchField ({onSubmit }) {
+export default function SearchField({ onSubmit }) {
+    
     return (
         <form onSubmit={onSubmit} >
             <input type="text" name='movieName' placeholder='Search'  />
