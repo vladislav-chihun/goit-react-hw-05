@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { searchMovie, trendMovies } from "../../movies-api";
 import { Link } from "react-router-dom";
 
-export default function MovieList({ query }) {
+export default function MovieList({query}) {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function MovieList({ query }) {
       <ul>
         {movies.map((movie) => (
           <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+            <Link to={`/movies/${movie.id}`} >{movie.title}</Link>
           </li>
         ))}
       </ul>

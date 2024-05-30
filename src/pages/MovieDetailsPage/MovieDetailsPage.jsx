@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { Link, NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { movieDetails } from "../../movies-api";
 
 export default function MovieDetailsPage() {
     const [movie, setMovie] = useState(null);
     const { movieId } = useParams();
+    const location = useLocation()
+     const backLinkRef = useRef(location.state ?? '/')
+    console.log(backLinkRef)
 
     useEffect(() => {
         if (!movieId) return;
@@ -24,7 +27,8 @@ export default function MovieDetailsPage() {
     return (
         <div>
             {movie && (
-                <>
+                <><p><Link to={backLinkRef.current} >Go Back</Link></p>
+                    
                     <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
                     <ul>
                         <li>
