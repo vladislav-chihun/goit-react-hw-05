@@ -18,19 +18,20 @@ export default function MoviesPage() {
     if (movieName === "") {
       return;
     }
-    setLoading(true);
     const getMovieByKeyword = async (movieName) => {
+       setLoading(true);
       try {
         const data = await searchMovie(movieName);
         if (!data.results.length) {
-          setLoading(false);
             setError(true);
             console.log("error no results")
         }
         setError(false);
-        setLoading(false);
       } catch (error) {
+        setError(true);
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     getMovieByKeyword(movieName);
@@ -53,8 +54,9 @@ export default function MoviesPage() {
     <main className="container">
       <div >
         <SearchField onSubmit={onSubmit} />
-        {error && <p>There are no movies with this request. Please, try again.</p>}
-        { movieName && <MovieList query={movieName} location={location}/>}
+        {loading && <p>Loading...</p>}
+        {error && !loading && <p>There are no movies with this request. Please, try again.</p>}
+        { movieName && !loading && !error &&  <MovieList query={movieName} location={location}/>}
       </div>
     </main>
   );
