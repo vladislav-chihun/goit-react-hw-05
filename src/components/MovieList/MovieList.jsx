@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { searchMovie, trendMovies } from "../../movies-api";
 import { Link, useLocation } from "react-router-dom";
 import css from "./MovieList.module.css";
-import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 
 export default function MovieList({ query }) {
   const [movies, setMovies] = useState([]);
