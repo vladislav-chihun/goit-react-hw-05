@@ -1,4 +1,4 @@
-// movies-api.js
+
 import axios from 'axios';
 
 const API_KEY = '5499238a19a5e78ff87a4990e8837714';
