@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { movieReviews } from "../../movies-api";
-import css from "./MovieReviews.module.css"
+import css from "./MovieReviews.module.css";
 
 export default function MovieReviews() {
     const [reviews, setReviews] = useState([]);
@@ -20,16 +20,20 @@ export default function MovieReviews() {
         };
 
         fetchMovieReviews();
-    }, [movieId,reviews]);
+    }, [movieId]);
 
     return (
         <ul className={css.reviewsContainer}>
-            {reviews.map(review => (
-                <li key={review.id}>
-                    <h3>Author: {review.author_details.username}</h3>
-                    <p>{review.content}</p>
-                </li>
-            ))}
+            {reviews.length > 0 ? (
+                reviews.map(review => (
+                    <li key={review.id}>
+                        <h3>Author: {review.author_details.username}</h3>
+                        <p>{review.content}</p>
+                    </li>
+                ))
+            ) : (
+                <p>No Reviews</p>
+            )}
         </ul>
     );
 }
