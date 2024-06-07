@@ -1,4 +1,4 @@
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { searchMovie } from "../../movies-api";
 import SearchField from "../../components/SearchField/SearchField";
@@ -6,7 +6,6 @@ import MovieList from "../../components/MovieList/MovieList";
 
 export default function MoviesPage() {
     const [searchParams, setSearchParams] = useSearchParams();
-    const location = useLocation();
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
